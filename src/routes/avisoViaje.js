@@ -107,3 +107,29 @@ function avisoDeViajeVariasTarjetas() {
         }
     ];
 }
+
+
+// Caso 3: Sin tarjetas
+function avisoDeViajeSinTarjetas() {
+    return [
+        {
+            id: "444777111",
+            fecha_comienzo: "2025-01-15",
+            fecha_fin: "2025-01-22",
+            estado: "CANCELLED",
+            paises: [
+                {
+                    codigo: "AL",
+                    descripcion: "ALBANIA"
+                }
+            ],
+            informacion_completa: false,
+            informacion_completa_descripcion: "At least one card was not included, because it belongs to a bank not included in the bank_code list",
+            tarjetas: []
+        }
+    ];
+}
+
+// ==========================================================================
+//                          MOCKS GENERAR AVISO DE VIAJE
+// ==========================================================================
