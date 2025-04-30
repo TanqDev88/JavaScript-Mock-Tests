@@ -133,3 +133,50 @@ function avisoDeViajeSinTarjetas() {
 // ==========================================================================
 //                          MOCKS GENERAR AVISO DE VIAJE
 // ==========================================================================
+// Objetos de ejemplo para realizar pruebas POST
+
+// // Primer objeto de ejemplo
+const ejemplo1 = {
+    "email": "nuevoemail@ejemplo.com",
+    "telefono": "5491122334455",
+    "tarjetas": [
+      {
+        "hash_tarjeta_viaje": "xyz987ABC456"
+      }
+    ],
+    "fecha_inicio": "2025-06-01",
+    "fecha_fin": "2025-06-15",
+    "paises": [
+      {
+        "codigo": "AR",
+        "descripcion": "ARGENTINA"
+      },
+      {
+        "codigo": "CL",
+        "descripcion": "CHILE"
+      }
+    ]
+  };
+  
+//   // Segundo objeto de ejemplo
+  const ejemplo2 = {
+    "email": "testuser@ejemplo.com",
+    "telefono": "5491133445566",
+    "tarjetas": [
+      {
+        "hash_tarjeta_viaje": "abc123XYZ789"
+      }
+    ],
+    "fecha_inicio": "2025-05-10",
+    "fecha_fin": "2025-05-20",
+    "paises": [
+      {
+        "codigo": "BR",
+        "descripcion": "BRASIL"
+      },
+      {
+        "codigo": "UY",
+        "descripcion": "URUGUAY"
+      }
+    ]
+  };
