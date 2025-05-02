@@ -1,0 +1,12 @@
+node_modules/\n.env\n*.log
+# Ignora node_modules
+node_modules/
+
+# Ignora archivos de logs
+*.log
+
+# Ignora archivos de entorno si los tuvieras
+.env
+
+# Ignora lockfiles si no querés trackearlos (opcional)
+package-lock.json
