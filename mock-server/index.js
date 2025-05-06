@@ -1,6 +1,6 @@
 // index.js
 const express = require('express');
-const piezasMocks = require('./piezas'); // Asegurate que piezas.js esté en el mismo directorio
+const piezasMocks = require('./mocks/piezas'); // Path para consumir los mocks del archivo piezas.js esté en el mismo directorio
 
 const app = express();
 app.use(express.json());
