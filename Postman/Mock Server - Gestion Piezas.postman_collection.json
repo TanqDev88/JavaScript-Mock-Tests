@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "80afac75-6a8b-48c8-ae7a-ac531a36fb49",
+		"name": "Mock Server - Gestion Piezas",
+		"description": "Colección para testear endpoints locales del mock server de piezas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10082696"
+	},
+	"item": [
+		{
+			"name": "Seguimiento Pieza - tarjetaEnSucursal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer tarjetaEnSucursal",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer enSucursal",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer domicilio",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer rendidaBanco",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoActualDistintoDeTraces",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoFueraSinRastroEnTraces",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoYaPresenteEnTraces",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoUnicoRepetido",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoMultipleDiferente",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoIncluidoEnMuchos",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer estadoExcluidoEnMuchos",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/seguimientopieza?NumeroPiezaCliente=tarjetaEnSucursal&ProveedorCorreo=test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"seguimientopieza"
+					],
+					"query": [
+						{
+							"key": "NumeroPiezaCliente",
+							"value": "tarjetaEnSucursal"
+						},
+						{
+							"key": "ProveedorCorreo",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Piezas - variasTarjetas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer variasTarjetas",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer unaTarjeta",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 401",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 403",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 404",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 500",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/consultapiezas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"consultapiezas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
