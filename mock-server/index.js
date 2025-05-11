@@ -8,7 +8,7 @@ app.use(express.json());
 // Ruta GET para seguimiento de una pieza
 app.get('/clientes/seguimientopieza', (req, res) => {
     try {
-        const { NumeroPiezaCliente, ProveedorCorreo } = req.query;
+        const { NumeroPiezaCliente} = req.query;
         const token = req.headers.authorization?.replace('Bearer ', '');
 
         const selector = token || NumeroPiezaCliente;

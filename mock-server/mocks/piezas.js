@@ -946,7 +946,7 @@ function estadoExcluidoEnMuchos() {
 // 🔎 EJECUCIÓN PARA PRUEBA INDIVIDUAL
 // ==========================================================================
 
-const DEBUG = true;
+const DEBUG = false;
 
 if (DEBUG) {
   console.log(JSON.stringify(estadoIncluidoEnMuchos(), null, 2));
