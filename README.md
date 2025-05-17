@@ -56,12 +56,12 @@ Este proyecto levanta un servidor mock en local para simular diferentes respuest
 
 
 
-📬 Endpoints disponibles
+📬 Available Endpoints
 1. Consulta de Piezas
 
 POST http://localhost:8080/piezas
 
-Header obligatorio: Authorization: unaTarjeta
+Header Required: Authorization: unaTarjeta
 
 Otros valores válidos: variasTarjetas, estadoIncluidoEnMuchos, etc.
 
@@ -69,6 +69,13 @@ Otros valores válidos: variasTarjetas, estadoIncluidoEnMuchos, etc.
 
 POST http://localhost:8080/aviso-viaje
 
-Header obligatorio: Authorization: viajeConfirmado
+Header Required: Authorization: viajeConfirmado
 
-Otros valores válidos: viajeRechazado, viajePendiente, etc.
+
+
+Other valid values: tripRejected, tripPending, etc.
+
+Notes
+Don't forget to check the .gitignore file to avoid uploading node_modules.
+
+If you want to add more mocks, simply create a new file inside mocks/ and add the handler to index.js.
