@@ -18,6 +18,7 @@
   "homepage": "https://github.com/TanqDev88/JavaScript-Mock-Tests#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "winston": "^3.17.0"
   }
 }

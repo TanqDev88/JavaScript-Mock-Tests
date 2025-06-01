@@ -187,3 +187,73 @@ const ejemplo1 = {
       }
     ]
   };
+
+  // ==========================================================================
+//                          MOCKS TARJETAS PARA AVISO DE VIAJE
+// ==========================================================================
+function tarjetasParaAvisoDeViajeUnaSola() {
+    return {
+        Tarjetas: [
+            {
+                marca: 'VI-CR',
+                ultimoscuatrodigitos: '1965',
+                categoria: 'E',
+                hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRWtKb2Zoa2x6bU8rbHZXMXQ0QUhBPT1RUjA1MlltNVNiR1ZJVVN0UVNGSndZbGRXVkdSSFJuUmpSRFI0VG5wUk0wOVVSVEpPVkdkNVVFTTVNR0ZYTVd4Vk0xSm9ZbGhCSzFCSVRteGpNMDV3WWpJMEsxcFhXVE5aVjBWM1RWUlpkRnBFVm1wUFF6QXhXVmRTYUV4WFNUTlpNa2wwVGxkV2EwNVVhelJOYlVWNVRXcGplRkJET1hwYVdFNTZZVmM1ZFZCcWQzWlpNamwxWkVkV05HUkVORGhrUjBaNVlXMVdNRmxVTkRoWmJXeDFVR3BSTlUxNlkzaE9la0YzVUVNNWFXRlhOQ3RRU0ZaelpFZFNjRm95YkRCaU0wMHJUVlJyTWs1VWQzWmtWM2d3V2tkc2JtRllVblpqZWpRNFpFZHNNR1JYZUdoamFqVklVMVU1VTFKRlJrOVVlVGxDVkd0RloxUlZSbE5UVlVVNFRETlNjR1JJVm5OWldFa3JVRU01TUZsWVNuRmFXRkpvVUdwM2RtRkhSbnBoUkRROS5IaHY1Mk9aaFZVeGp6MG1iWVE5TzkybzZubWszWTl6enk0SHA1MVRGV3BFRy0ycFdHMG5YTk93SXJ3YUdVZTduSTFqelVLdXBhS0hZNWRTdTBqU0VCUQ==',
+            },
+        ],
+    };
+}
+
+function tarjetasParaAvisoDeViajeVarias() {
+    return {
+        Tarjetas: [
+            {
+                marca: 'VI-CR',
+                ultimoscuatrodigitos: '1965',
+                categoria: 'E',
+                hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRWtKb2Zoa2x6bU8rbHZXMXQ0QUhBPT1RUjA1MlltNVNiR1ZJVVN0UVNGSndZbGRXVkdSSFJuUmpSRFI0VG5wUk0wOVVSVEpPVkdkNVVFTTVNR0ZYTVd4Vk0xSm9ZbGhCSzFCSVRteGpNMDV3WWpJMEsxcFhXVE5aVjBWM1RWUlpkRnBFVm1wUFF6QXhXVmRTYUV4WFNUTlpNa2wwVGxkV2EwNVVhelJOYlVWNVRXcGplRkJET1hwYVdFNTZZVmM1ZFZCcWQzWlpNamwxWkVkV05HUkVORGhrUjBaNVlXMVdNRmxVTkRoWmJXeDFVR3BSTlUxNlkzaE9la0YzVUVNNWFXRlhOQ3RRU0ZaelpFZFNjRm95YkRCaU0wMHJUVlJyTWs1VWQzWmtWM2d3V2tkc2JtRllVblpqZWpRNFpFZHNNR1JYZUdoamFqVklVMVU1VTFKRlJrOVVlVGxDVkd0RloxUlZSbE5UVlVVNFRETlNjR1JJVm5OWldFa3JVRU01TUZsWVNuRmFXRkpvVUdwM2RtRkhSbnBoUkRROS5IaHY1Mk9aaFZVeGp6MG1iWVE5TzkybzZubWszWTl6enk0SHA1MVRGV3BFRy0ycFdHMG5YTk93SXJ3YUdVZTduSTFqelVLdXBhS0hZNWRTdTBqU0VCUQ==',
+            },
+            {
+                marca: 'VI-CR',
+                ultimoscuatrodigitos: '1955',
+                categoria: '0',
+                hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRWtKb2Zoa2x6bU8rbHZXMXQ0QUhBPT1RUjA1MlltNVNiR1ZJVVN0UVNGSndZbGRXVkdSSFJuUmpSRFI0VG5wUk0wOVVSVEpPVkdkNVVFTTVNR0ZYTVd4Vk0xSm9ZbGhCSzFCSVRteGpNMDV3WWpJMEsxcFhXVE5aVjBWM1RWUlpkRnBFVm1wUFF6QXhXVmRTYUV4WFNUTlpNa2wwVGxkV2EwNVVhelJOYlVWNVRXcGplRkJET1hwYVdFNTZZVmM1ZFZCcWQzWlpNamwxWkVkV05HUkVORGhrUjBaNVlXMVdNRmxVTkRoWmJXeDFVR3BSTVU1VVZUVlBWRUYzVUVNNWFXRlhOQ3RRU0ZaelpFZFNjRm95YkRCaU0wMHJUVlJyTVU1VWQzWmtWM2d3V2tkc2JtRllVblpqZWpRNFpFZHNNR1JYZUdoamFqVklVMVU1VTFKRlJrOVVlVGxDVkd0RloxUlZSbE5UVlVVNFRETlNjR1JJVm5OWldFa3JVRU01TUZsWVNuRmFXRkpvVUdwM2RtRkhSbnBoUkRROS41Vm9TeHdMWExHQTlYZGlTVE14eTVTWlU0N3psMmdJcVhUUW9WRkc0QV9obzZIOFp2QWQ2Ty0zQTJ0Q0cwbzBsaE5aWE5PWTZrV2xRYng2Z1RTWGZCZw==',
+            },
+            {
+                marca: 'VI-CR',
+                ultimoscuatrodigitos: '4140',
+                categoria: '1',
+                hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRWtKb2Zoa2x6bU8rbHZXMXQ0QUhBPT1RUjA1MlltNVNiR1ZJVVN0UVNGSndZbGRXVkdSSFJuUmpSRFI0VG5wUk0wOVVSVEpPVkdkNVVFTTVNR0ZYTVd4Vk0xSm9ZbGhCSzFCSVRteGpNMDV3WWpJMEsxcFhXVE5aVjBWM1RWUlpkRnBFVm1wUFF6QXhXVmRTYUV4WFNUTlpNa2wwVGxkV2EwNVVhelJOYlVWNVRXcGplRkJET1hwYVdFNTZZVmM1ZFZCcWQzWlpNamwxWkVkV05HUkVORGhrUjBaNVlXMVdNRmxVTkRoWmJXeDFVR3BSTVU1VVZUVlBWRUYzVUVNNWFXRlhOQ3RRU0ZaelpFZFNjRm95YkRCaU0wMHJUa1JGTUUxRWQzWmtWM2d3V2tkc2JtRllVblpqZWpRNFpFZHNNR1JYZUdoamFqVklVMVU1VTFKRlJrOVVlVGxDVkd0RloxUlZSbE5UVlVVNFRETlNjR1JJVm5OWldFa3JVRU01TUZsWVNuRmFXRkpvVUdwM2RtRkhSbnBoUkRROS5oOHFvWHFjUGEzN196Tmx3YjI5S2sxY1VQNDIwWS13cEo0cHFUN1J2MmhERmF1bTdDZkM3WUE0LVhQSUFqV2g3eDNVaGI5eS1tLWUtaHZWZXpxQ01TUQ==',
+            },
+        ],
+    };
+}
+
+function tarjetasParaAvisoDeViajeNinguna() {
+    return {
+        Tarjetas: [],
+    };
+}
+
+function errorFechasSuperpuestas() {
+    return {
+        status: 400,
+        response: {
+            error_code: "400",
+            message: "There is already a travel with the sent dates."
+        }
+    };
+}
+
+// ==========================================================================
+//                       EXPORTACIÓN DE FUNCIONES
+// ==========================================================================
+
+module.exports = {
+    avisoDeViajeunaTarjeta,
+    avisoDeViajeVariasTarjetas,
+    tarjetasParaAvisoDeViajeUnaSola,
+    tarjetasParaAvisoDeViajeVarias,
+    tarjetasParaAvisoDeViajeNinguna,
+    errorFechasSuperpuestas,
+};
