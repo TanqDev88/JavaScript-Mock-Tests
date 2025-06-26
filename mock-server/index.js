@@ -125,7 +125,7 @@ function getMockTarjetasParaAvisoDeViaje(token) {
         tarjetasParaAvisoDeViajeUnaSola: avisoMocks.tarjetasParaAvisoDeViajeUnaSola,
         tarjetasParaAvisoDeViajeVarias: avisoMocks.tarjetasParaAvisoDeViajeVarias,
         tarjetasParaAvisoDeViajeNinguna: avisoMocks.tarjetasParaAvisoDeViajeNinguna,
-        errorFechasSuperpuestas: avisoMocks.errorFechasSuperpuestas,
+        tarjetasParaAvisoDeViajeDiez: avisoMocks.tarjetasParaAvisoDeViajeDiez,
     };
 
     return (mockResponses[token] || avisoMocks.tarjetasParaAvisoDeViajeUnaSola)();

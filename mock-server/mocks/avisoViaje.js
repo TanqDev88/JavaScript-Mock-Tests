@@ -147,48 +147,48 @@ const ejemplo1 = {
     "email": "nuevoemail@ejemplo.com",
     "telefono": "5491122334455",
     "tarjetas": [
-      {
-        "hash_tarjeta_viaje": "xyz987ABC456"
-      }
+        {
+            "hash_tarjeta_viaje": "xyz987ABC456"
+        }
     ],
     "fecha_inicio": "2025-06-01",
     "fecha_fin": "2025-06-15",
     "paises": [
-      {
-        "codigo": "AR",
-        "descripcion": "ARGENTINA"
-      },
-      {
-        "codigo": "CL",
-        "descripcion": "CHILE"
-      }
+        {
+            "codigo": "AR",
+            "descripcion": "ARGENTINA"
+        },
+        {
+            "codigo": "CL",
+            "descripcion": "CHILE"
+        }
     ]
-  };
-  
+};
+
 //   // Segundo objeto de ejemplo
-  const ejemplo2 = {
+const ejemplo2 = {
     "email": "testuser@ejemplo.com",
     "telefono": "5491133445566",
     "tarjetas": [
-      {
-        "hash_tarjeta_viaje": "abc123XYZ789"
-      }
+        {
+            "hash_tarjeta_viaje": "abc123XYZ789"
+        }
     ],
     "fecha_inicio": "2025-05-10",
     "fecha_fin": "2025-05-20",
     "paises": [
-      {
-        "codigo": "BR",
-        "descripcion": "BRASIL"
-      },
-      {
-        "codigo": "UY",
-        "descripcion": "URUGUAY"
-      }
+        {
+            "codigo": "BR",
+            "descripcion": "BRASIL"
+        },
+        {
+            "codigo": "UY",
+            "descripcion": "URUGUAY"
+        }
     ]
-  };
+};
 
-  // ==========================================================================
+// ==========================================================================
 //                          MOCKS TARJETAS PARA AVISO DE VIAJE
 // ==========================================================================
 function tarjetasParaAvisoDeViajeUnaSola() {
@@ -235,13 +235,20 @@ function tarjetasParaAvisoDeViajeNinguna() {
     };
 }
 
-function errorFechasSuperpuestas() {
+function tarjetasParaAvisoDeViajeDiez() {
     return {
-        status: 400,
-        response: {
-            error_code: "400",
-            message: "There is already a travel with the sent dates."
-        }
+        Tarjetas: [
+            { marca: 'VI-CR', ultimoscuatrodigitos: '1999', categoria: 'E', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRW' },
+            { marca: 'VI-CR', ultimoscuatrodigitos: '1963', categoria: '1', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRW' },
+            { marca: 'VI-CR', ultimoscuatrodigitos: '4132', categoria: '0', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRW' },
+            { marca: 'VI-CR', ultimoscuatrodigitos: '4140', categoria: '1', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRW' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '9000', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rN' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '6001', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rN' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '6002', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rN' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '6003', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rN' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '6004', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rN' },
+            { marca: 'VI-DB', ultimoscuatrodigitos: '9005', categoria: '', hash: 'Mjg1MDAwMDU2RFo3ZElEUFBXaXRLOVF5QXFmK1BoSUYzaU0rNXdCaVoyRWtKb2Zoa2x6bU8rbHZXMXQ0QUhBPT1R' },
+        ],
     };
 }
 
@@ -255,5 +262,5 @@ module.exports = {
     tarjetasParaAvisoDeViajeUnaSola,
     tarjetasParaAvisoDeViajeVarias,
     tarjetasParaAvisoDeViajeNinguna,
-    errorFechasSuperpuestas,
+    tarjetasParaAvisoDeViajeDiez,
 };
