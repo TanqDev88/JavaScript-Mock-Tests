@@ -103,6 +103,28 @@ app.listen(PORT, () => {
     console.log(`Servidor mock activo en http://localhost:${PORT}`);
 });
 
+// ==========================================================================
+//                          ELIMINAR AVISO DE VIAJE
+// ==========================================================================
+app.delete('/clientes/tarjetas/viajes/avisos/elimina/:id', (req, res) => {
+    try {
+        const token = req.headers.authorization?.replace('Bearer ', '');
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({ error: "Falta el campo 'id' en los params" });
+        }
+
+        L.info('Token recibido para eliminar aviso de viaje:', token);
+        L.info('ID a eliminar:', id);
+
+        const mockResponse = avisoMocks.eliminarAvisoDeViaje(id);
+        return res.status(204).json(mockResponse);
+    } catch (e) {
+        return res.status(500).json({ error: e.message });
+    }
+});
+
 
 // ==========================================================================
 //                          TARJETAS PARA AVISO DE VIAJE
