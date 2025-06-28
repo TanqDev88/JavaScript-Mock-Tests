@@ -103,6 +103,58 @@ app.listen(PORT, () => {
     console.log(`Servidor mock activo en http://localhost:${PORT}`);
 });
 
+//****************************************Mocks para servicios Aviso de viaje*****************
+
+// ==========================================================================
+//                          CONSULTA AVISO DE VIAJE
+// ==========================================================================
+app.get('/clientes/avisoviaje', (req, res) => {
+    try {
+        const token = req.headers.authorization.replace('Bearer ', '');
+
+        const mockResponse = getMockAvisoDeViaje(token);
+        if (!mockResponse.viajes) {
+            return res.status(404);
+        } else {
+            return res.status(200).json(mockResponse);
+        }
+    } catch (e) {
+        return res.status(500).json({ error: e.message });
+    }
+});
+
+function getMockAvisoDeViaje(token) {
+    L.info('Token recibido para consulta aviso de viaje:', token);
+
+    const mockResponses = {
+        unaTarjeta: avisoMocks.avisoDeViajeunaTarjeta,
+        variasTarjetas: avisoMocks.avisoDeViajeVariasTarjetas,
+        sinTarjetas: avisoMocks.avisoDeViajeSinTarjetas,
+        //variosAvisos: avisoMocks.variosAvisosDeViaje, Esto de aca esta sin uso eliminar
+    };
+
+    return (mockResponses[token] || avisoDeViajeunaTarjeta)();
+}
+
+//==========================================================================
+//                          GENERAR AVISO DE VIAJE DINÁMICO
+// ==========================================================================
+app.post('/clientes/avisoviaje', (req, res) => {
+    try {
+        const token = req.headers.authorization?.replace('Bearer ', '');
+        const body = req.body;
+
+        L.info('Token recibido para generar aviso de viaje:', token);
+        L.info('Datos recibidos:', body);
+
+        return res.status(200).json({
+            viajeid: '1234',
+        });
+    } catch (e) {
+        return res.status(500).json({ error: e.message });
+    }
+});
+
 // ==========================================================================
 //                          ELIMINAR AVISO DE VIAJE
 // ==========================================================================
@@ -144,10 +196,10 @@ function getMockTarjetasParaAvisoDeViaje(token) {
     L.info('Token recibido para tarjetas para aviso de viaje:', token);
 
     const mockResponses = {
-        tarjetasParaAvisoDeViajeUnaSola: avisoMocks.tarjetasParaAvisoDeViajeUnaSola,
-        tarjetasParaAvisoDeViajeVarias: avisoMocks.tarjetasParaAvisoDeViajeVarias,
-        tarjetasParaAvisoDeViajeNinguna: avisoMocks.tarjetasParaAvisoDeViajeNinguna,
-        tarjetasParaAvisoDeViajeDiez: avisoMocks.tarjetasParaAvisoDeViajeDiez,
+        UnaSola: avisoMocks.tarjetasParaAvisoDeViajeUnaSola,
+        Varias: avisoMocks.tarjetasParaAvisoDeViajeVarias,
+        Ninguna: avisoMocks.tarjetasParaAvisoDeViajeNinguna,
+        Diez: avisoMocks.tarjetasParaAvisoDeViajeDiez,
     };
 
     return (mockResponses[token] || avisoMocks.tarjetasParaAvisoDeViajeUnaSola)();

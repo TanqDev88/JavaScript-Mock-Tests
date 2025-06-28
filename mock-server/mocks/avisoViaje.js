@@ -270,6 +270,8 @@ function tarjetasParaAvisoDeViajeDiez() {
 module.exports = {
     avisoDeViajeunaTarjeta,
     avisoDeViajeVariasTarjetas,
+    avisoDeViajeSinTarjetas,
+    eliminarAvisoDeViaje,
     tarjetasParaAvisoDeViajeUnaSola,
     tarjetasParaAvisoDeViajeVarias,
     tarjetasParaAvisoDeViajeNinguna,
