@@ -189,6 +189,17 @@ const ejemplo2 = {
 };
 
 // ==========================================================================
+//                          MOCKS ELIMINAR AVISO DE VIAJE
+// ==========================================================================
+
+function eliminarAvisoDeViaje(id) {
+    return {
+        mensaje: 'Aviso de viaje eliminado correctamente',
+        id_eliminado: id,
+    };
+}
+
+// ==========================================================================
 //                          MOCKS TARJETAS PARA AVISO DE VIAJE
 // ==========================================================================
 function tarjetasParaAvisoDeViajeUnaSola() {
