@@ -158,25 +158,79 @@ app.post('/clientes/avisoviaje', (req, res) => {
 // ==========================================================================
 //                          ELIMINAR AVISO DE VIAJE
 // ==========================================================================
-app.delete('/clientes/tarjetas/viajes/avisos/elimina/:id', (req, res) => {
+// app.delete('/clientes/tarjetas/viajes/avisos/elimina/:id', (req, res) => {
+//     try {
+//         const token = req.headers.authorization?.replace('Bearer ', '');
+//         const { id } = req.params;
+
+//         if (!id) {
+//             return res.status(400).json({ error: "Falta el campo 'id' en los params" });
+//         }
+
+//         L.info('Token recibido para eliminar aviso de viaje:', token);
+//         L.info('ID a eliminar:', id);
+
+//         const mockResponse = avisoMocks.eliminarAvisoDeViaje(id);
+//         return res.status(204).json(mockResponse);
+//     } catch (e) {
+//         return res.status(500).json({ error: e.message });
+//     }
+// });
+
+app.delete('/clientes/tarjetas/viajes/avisos/elimina/:viajeId', (req, res) => {
     try {
         const token = req.headers.authorization?.replace('Bearer ', '');
-        const { id } = req.params;
+        const { viajeId } = req.params;
 
-        if (!id) {
-            return res.status(400).json({ error: "Falta el campo 'id' en los params" });
+        if (!token) {
+            return res.status(401).json({
+                error_code: 'SecurityException',
+                message: 'La información de seguridad no es válida', //Ok
+            });
         }
 
-        L.info('Token recibido para eliminar aviso de viaje:', token);
-        L.info('ID a eliminar:', id);
+        if (!viajeId) {
+            return res.status(400).json({
+                error_code: 'BadRequest',
+                message: "Falta el campo 'viajeId' en los params",
+            });
+        }
 
-        const mockResponse = avisoMocks.eliminarAvisoDeViaje(id);
-        return res.status(204).json(mockResponse);
+        // Simular token inválido o vencido
+        if (token === '403') {
+            return res.status(403).json({
+                error_code: '',
+                message: 'Token sin permisos suficientes', //ok
+            });
+        }
+
+        // Simular viaje no encontrado
+        if (viajeId === '999') {
+            return res.status(404).json({
+                error_code: '',
+                message: 'Viaje no encontrado',
+            });
+        }
+
+        // Simular error interno
+        if (token === '500') {
+            return res.status(500).json({
+                error_code: 'ServiceException',
+                message: 'Error interno, por favor vuelva a intentar.',
+            });
+        }
+
+        // Caso de éxito
+        L.info('Token recibido para eliminar aviso de viaje:', token);
+        L.info('ID a eliminar:', viajeId);
+        return res.status(204).send(); // 204 sin body
     } catch (e) {
-        return res.status(500).json({ error: e.message });
+        return res.status(500).json({
+            error_code: 'ServiceException',
+            message: e.message,
+        });
     }
 });
-
 
 // ==========================================================================
 //                          TARJETAS PARA AVISO DE VIAJE
