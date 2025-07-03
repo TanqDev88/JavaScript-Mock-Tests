@@ -130,7 +130,6 @@ function getMockAvisoDeViaje(token) {
         unaTarjeta: avisoMocks.avisoDeViajeunaTarjeta,
         variasTarjetas: avisoMocks.avisoDeViajeVariasTarjetas,
         sinTarjetas: avisoMocks.avisoDeViajeSinTarjetas,
-        //variosAvisos: avisoMocks.variosAvisosDeViaje, Esto de aca esta sin uso eliminar
     };
 
     return (mockResponses[token] || avisoDeViajeunaTarjeta)();
@@ -179,61 +178,6 @@ app.delete('/clientes/tarjetas/viajes/avisos/elimina/:id', (req, res) => {
         return res.status(500).json({ error: e.message });
     }
 });
-
-// app.delete('/clientes/tarjetas/viajes/avisos/elimina/:viajeId', (req, res) => {
-//     try {
-//         const token = req.headers.authorization?.replace('Bearer ', '');
-//         const { viajeId } = req.params;
-
-//         if (!token) {
-//             return res.status(401).json({
-//                 error_code: 'SecurityException',
-//                 message: 'La información de seguridad no es válida', //Ok
-//             });
-//         }
-
-//         if (!viajeId) {
-//             return res.status(400).json({
-//                 error_code: 'BadRequest',
-//                 message: "Falta el campo 'viajeId' en los params",
-//             });
-//         }
-
-//         // Simular token inválido o vencido
-//         if (token === '403') {
-//             return res.status(403).json({
-//                 error_code: '',
-//                 message: 'Token sin permisos suficientes', //ok
-//             });
-//         }
-
-//         // Simular viaje no encontrado
-//         if (viajeId === '999') {
-//             return res.status(404).json({
-//                 error_code: '',
-//                 message: 'Viaje no encontrado',
-//             });
-//         }
-
-//         // Simular error interno
-//         if (token === '500') {
-//             return res.status(500).json({
-//                 error_code: 'ServiceException',
-//                 message: 'Error interno, por favor vuelva a intentar.',
-//             });
-//         }
-
-//         // Caso de éxito
-//         L.info('Token recibido para eliminar aviso de viaje:', token);
-//         L.info('ID a eliminar:', viajeId);
-//         return res.status(204).send(); // 204 sin body
-//     } catch (e) {
-//         return res.status(500).json({
-//             error_code: 'ServiceException',
-//             message: e.message,
-//         });
-//     }
-// });
 
 // ==========================================================================
 //                          TARJETAS PARA AVISO DE VIAJE
