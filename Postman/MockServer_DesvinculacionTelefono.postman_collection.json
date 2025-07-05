@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "438e9d9f-6b1b-41a4-adc6-8470b1de72db",
+		"name": "Desvinculacion Telefono - Mock API",
+		"description": "Esta colección simula los posibles escenarios del servicio **DELETE /clientes/{HashCliente}/desvincula/telefono**, utilizado para desvincular un número telefónico de un cliente.\n\n#### Detalles del servicio mockeado:\n\n- **Método:** `DELETE`\n    \n- **URL base:** `https://europe-central2-macro-350416.cloudfunctions.net/macro-mocks`\n    \n- **Ruta simulada:** `/clientes/:hashCliente/desvincula/telefono`\n    \n- **Header requerido:** `Authorization: Bearer`\n    \n\n#### Casos contemplados:\n\n- `Bearer desvincularOK` → Respuesta `204` (sin contenido)\n    \n- `Bearer error401` → Respuesta `401` con mensaje de error de seguridad\n    \n- `Bearer error409` → Respuesta `409` con mensaje de no existencia de teléfonos a desvincular\n    \n- `Bearer error500` → Respuesta `500` simulando un error interno del servidor\n    \n\n#### Notas:\n\n- El `hashCliente` puede ser cualquier valor (por ejemplo: `123456`) ya que no se valida su contenido.\n    \n- Esta colección es útil para pruebas desde Postman o integraciones mockeadas en LivePerson.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10082696"
+	},
+	"item": [
+		{
+			"name": "Desvincular - Caso 204 OK",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer desvincularOK",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/123456789/desvincula/telefono",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"123456789",
+						"desvincula",
+						"telefono"
+					]
+				},
+				"description": "Simula un caso exitoso donde el número telefónico del cliente es desvinculado correctamente. No se devuelve contenido en la respuesta (HTTP 204)."
+			},
+			"response": []
+		},
+		{
+			"name": "Desvincular - Caso 401",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer error401",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/123456789/desvincula/telefono",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"123456789",
+						"desvincula",
+						"telefono"
+					]
+				},
+				"description": "Simula una respuesta con error de seguridad debido a un token inválido (HTTP 401)."
+			},
+			"response": []
+		},
+		{
+			"name": "Desvincular - Caso 409",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer error409",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/123456789/desvincula/telefono",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"123456789",
+						"desvincula",
+						"telefono"
+					]
+				},
+				"description": "Simula un caso donde no existen números telefónicos asociados al cliente (HTTP 409)."
+			},
+			"response": []
+		},
+		{
+			"name": "Desvincular - Caso 500",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer error500",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/clientes/123456789/desvincula/telefono",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"123456789",
+						"desvincula",
+						"telefono"
+					]
+				},
+				"description": "Simula un error interno del servidor (HTTP 500)."
+			},
+			"response": []
+		}
+	]
+}
