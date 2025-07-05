@@ -2,6 +2,7 @@
 const express = require('express');
 const piezasMocks = require('./mocks/piezas'); // Path para consumir los mocks del archivo piezas.js esté en el mismo directorio
 const avisoMocks = require('./mocks/avisoViaje');
+const desvinculacionMocks = require('./mocks/desvinculacion');
 
 const app = express();
 app.use(express.json());
@@ -242,4 +243,35 @@ app.get('/clientes/:hashCliente/enrolamiento', (req, res) => {
     }
 
     res.status(200).json({ enroladobiometria: response });
+});
+
+// ==========================================================================
+//                          DESVINCULACIÓN DE TELÉFONO
+// ==========================================================================
+app.delete('/clientes/:hashCliente/desvincula/telefono', (req, res) => {
+    try {
+        const { hashCliente } = req.params;
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+
+        L.info('Token recibido para desvinculación:', token || '[NO RECIBIDO]');
+        L.info('HashCliente:', hashCliente || '[NO RECIBIDO]');
+
+        switch (token) {
+            case 'desvincularOK':
+                return res.status(204).send(); // No se envía body
+            case 'error401':
+                return res.status(401).json(desvinculacionMocks.error401());
+            case 'error409':
+                return res.status(409).json(desvinculacionMocks.error409());
+            case 'error500':
+                return res.status(500).json(desvinculacionMocks.error500());
+            default:
+                L.warn('Token no reconocido. Enviando error 401 por defecto.');
+                return res.status(401).json(desvinculacionMocks.error401());
+        }
+    } catch (e) {
+        L.error('Excepción no controlada:', e);
+        return res.status(500).json({ error: e.message });
+    }
 });
