@@ -14,11 +14,13 @@ const L = winston.createLogger({
     transports: [new winston.transports.Console()],
 });
 
+let counter = 0;
+
 
 // Ruta GET para seguimiento de una pieza
 app.get('/clientes/seguimientopieza', (req, res) => {
     try {
-        const { NumeroPiezaCliente} = req.query;
+        const { NumeroPiezaCliente } = req.query;
         const token = req.headers.authorization?.replace('Bearer ', '');
 
         const selector = token || NumeroPiezaCliente;
@@ -274,4 +276,21 @@ app.delete('/clientes/:hashCliente/desvincula/telefono', (req, res) => {
         L.error('Excepción no controlada:', e);
         return res.status(500).json({ error: e.message });
     }
+});
+
+app.post('/:state', async (req, res) => {
+    counter++;
+    const count = counter;
+
+    L.info(`Received /:state request #${count}`);
+
+    res.status(409).json({
+        success: false,
+        data: null,
+        error: {
+            code_http: 409,
+            code_info: "DNI_REPETIDO",
+            message: "Numero de documento duplicado."
+        }
+    });
 });
