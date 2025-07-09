@@ -294,3 +294,52 @@ app.post('/:state', async (req, res) => {
         }
     });
 });
+//****************************************** Mock para el endpoint MULC*****************
+
+app.get('/clientes/dolarmep/autorizado', (req, res) => {
+    const authHeader = req.headers['authorization'];
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        res.status(401).json({
+            error_code: 'Unauthorized',
+            message: 'Token no proporcionado o formato inválido.',
+        });
+        return;
+    }
+
+    const tokenBiometrico = authHeader.replace('Bearer ', '');
+
+    const autorizado = get_isTokenAutorizado(tokenBiometrico);
+
+    res.status(200).json({ autorizado: autorizado });
+});
+
+function get_isTokenAutorizado(token) {
+    let response = 'false';
+    const list = {
+        tokenValido1: 'true',
+        tokenValido2: 'false',
+        tokenValido3: 'true',
+        tokenValido4: 'true',
+    };
+    if (!_.isEmpty(list[token])) response = list[token];
+    return response;
+}
+
+///****MOCK 500 */
+
+app.post('/test-api/500', (req, res) => {
+    return res.status(500).end();
+});
+
+app.get('/test-api/500', (req, res) => {
+    return res.status(500).end();
+});
+
+app.post('/test-api/403', (req, res) => {
+    return res.status(403).end();
+});
+
+app.get('/test-api/403', (req, res) => {
+    return res.status(403).end();
+});
