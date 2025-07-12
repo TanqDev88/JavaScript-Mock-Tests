@@ -38,24 +38,60 @@ app.get('/clientes/seguimientopieza', (req, res) => {
 });
 
 // Función de selección de mocks para seguimiento de pieza
-function mockGetPiezas(token) {
-    console.info('Selector recibido:', token);
-    switch (token) {
-        case 'tarjetaEnSucursal': return piezasMocks.tarjetaEnSucursal();
-        case 'enSucursal': return piezasMocks.enSucursal();
-        case 'domicilio': return piezasMocks.domicilio();
-        case 'rendidaBanco': return piezasMocks.rendidaBanco();
-        case 'estadoActualDistintoDeTraces': return piezasMocks.estadoActualDistintoDeTraces();
-        case 'estadoFueraSinRastroEnTraces': return piezasMocks.estadoFueraSinRastroEnTraces();
-        case 'estadoYaPresenteEnTraces': return piezasMocks.estadoYaPresenteEnTraces();
-        case 'estadoUnicoRepetido': return piezasMocks.estadoUnicoRepetido();
-        case 'estadoMultipleDiferente': return piezasMocks.estadoMultipleDiferente();
-        case 'estadoIncluidoEnMuchos': return piezasMocks.estadoIncluidoEnMuchos();
-        case 'estadoExcluidoEnMuchos': return piezasMocks.estadoExcluidoEnMuchos();
+function mockGetPiezas(numeroPiezaCliente) {
+    L.info('numeroPiezaCliente recibido:', numeroPiezaCliente);
+    let response;
+    switch (numeroPiezaCliente) {
+        case 'tarjetaEnSucursal':
+            response = piezasMocks.enSucursal();
+            break;
+        case 'enSucursal':
+            response = piezasMocks.tarjetaElejidaSucursal();
+            break;
+        case 'noTeEncontramos':
+            response = piezasMocks.noTeEncontramos();
+            break;
+        case 'enDistribucion':
+            response = piezasMocks.enDistribucion();
+            break;
+        case 'domicilio':
+            response = piezasMocks.domicilio();
+            break;
+        case 'rendidaBanco':
+            response = piezasMocks.rendidaBanco();
+            break;
+        case 'estadoActualDistintoDeTraces':
+            response = piezasMocks.estadoActualDistintoDeTraces();
+            break;
+        case 'estadoFueraSinRastroEnTraces':
+            response = piezasMocks.estadoFueraSinRastroEnTraces();
+            break;
+        case 'estadoYaPresenteEnTraces':
+            response = piezasMocks.estadoYaPresenteEnTraces();
+            break;
+        case 'estadoUnicoRepetido':
+            response = piezasMocks.estadoUnicoRepetido();
+            break;
+        case 'estadoMultipleDiferente':
+            response = piezasMocks.estadoMultipleDiferente();
+            break;
+        case 'estadoIncluidoEnMuchos':
+            response = piezasMocks.estadoIncluidoEnMuchos();
+            break;
+        case 'estadoExcluidoEnMuchos':
+            response = piezasMocks.estadoExcluidoEnMuchos();
+            break;
+        case 'seguimientoSegundaVisita':
+            response = piezasMocks.seguimientoSegundaVisita ();
+            break;
+        case 'SeguimientoPiezaSeMudo':
+            response = piezasMocks.SeguimientoPiezaSeMudo ();
+            break;
         default:
-            console.warn('Mock no encontrado. Devolviendo uno por defecto.');
-            return piezasMocks.tarjetaEnSucursal(); // por defecto
+            response = piezasMocks.tarjetaEnSucursal();
+            break;
     }
+    return response;
 }
 
 // Ruta GET para consulta de piezas (casos con varias o una tarjeta)

@@ -460,6 +460,48 @@ function variasTarjetas() {
     };
 }
 
+function envioPiezaSeMudo() {
+    return {
+        Proveedores: [
+            {
+                ProveedorCorreo: "OCASA",
+                Piezas: [
+                    {
+                        NumeroPiezaCliente: "4517649227863455",
+                        IdPieza: "PST87875258",
+                        FechaImposicion: "2025-06-27",
+                        Producto: "040042361",
+                        IdEstado: "10",
+                        EstadoDescripcion: "VISITA",
+                        IdMotivo: "02",
+                        MotivoDescripcion: "SE MUDÓ",
+                        EstadoNegocio: "En distribución",
+                        MotivoNegocio: "Fuimos a tu domicilio y nos informaron que te mudaste",
+                        ProductoNegocio: "",
+                        CodigoPostal: "6450",
+                        Direccion: "E ECHEVERRIA 329 0 0",
+                        Ciudad: "PEHUAJO",
+                        Provincia: "",
+                        FechaNovedad: "2025-07-07",
+                        CartaRendicion: "0",
+                        SucursalRendicion: "",
+                        NombreSucursalRendicion: "",
+                        DomicilioRendicion: "",
+                        CodigoPostalRendicion: "",
+                        LocalidadRendicion: "",
+                        NumeroDocumento: "",
+                        TipoDocumento: "01",
+                        Receptor: "",
+                        Vinculo: "",
+                        Destinatario: "USUARIO TEST",
+                        Operativa: "0040042361"
+                    }
+                ]
+            }
+        ]
+    };
+}
+
 // ==========================================================================
 // 🔍 MOCKS DE SEGUIMIENTO DE PIEZAS (Estados de negocio)
 //
@@ -628,6 +670,76 @@ function tarjetaEnSucursal() {
                 ],
             },
         ],
+    };
+}
+
+function SeguimientoPiezaSeMudo() {
+    return {
+        ProveedorCorreo: "OCASA",
+        NumeroPiezaCliente: "4517649227863455",
+        IdUltimoMotivo: "02",
+        UltimoMotivoDescripcion: "",
+        ProductoNegocio: "",
+        IdUltimoEstado: "10",
+        EstadoNegocio: "En distribución",
+        MotivoNegocio: "Fuimos a tu domicilio y nos informaron que te mudaste",
+        UltimoEstadoDescripcion: "",
+        Producto: "",
+        IdPieza: "PST87875258",
+        Traces: [
+            {
+                Orden: "60525244",
+                FechaDeEstado: "2025-07-01",
+                HoraDeEstado: "10:23:35",
+                EstadoNegocio: "En distribución",
+                EstadoDescripcion: "DESPACHADO",
+                IdEstado: "41",
+                IdMotivo: "1",
+                MotivoDescripcion: "SIN DEFINIR",
+                MensajeNegocio: "Tu tarjeta se encuentra en camino",
+                Observaciones: "",
+                MostrarTrace: "SI"
+            },
+            {
+                Orden: "62432861",
+                FechaDeEstado: "2025-07-07",
+                HoraDeEstado: "18:27:00",
+                EstadoNegocio: "En distribución",
+                EstadoDescripcion: "POD",
+                IdEstado: "10",
+                IdMotivo: "02",
+                MotivoDescripcion: "SE MUDÓ",
+                MensajeNegocio: "Fuimos a tu domicilio y nos informaron que te mudaste",
+                Observaciones: "",
+                MostrarTrace: "SI"
+            },
+            {
+                Orden: "60264513",
+                FechaDeEstado: "2025-06-27",
+                HoraDeEstado: "18:01:42",
+                EstadoNegocio: "En proceso",
+                EstadoDescripcion: "PENDIENTE DE DISTRIBUCION",
+                IdEstado: "42",
+                IdMotivo: "1",
+                MotivoDescripcion: "SIN DEFINIR",
+                MensajeNegocio: "Estamos preparando tu tarjeta",
+                Observaciones: "",
+                MostrarTrace: "NO"
+            },
+            {
+                Orden: "60264512",
+                FechaDeEstado: "2025-06-27",
+                HoraDeEstado: "18:01:42",
+                EstadoNegocio: "En proceso",
+                EstadoDescripcion: "PEDIDO REGISTRADO (PICKUP)",
+                IdEstado: "29",
+                IdMotivo: "1",
+                MotivoDescripcion: "SIN DEFINIR",
+                MensajeNegocio: "Estamos preparando tu tarjeta",
+                Observaciones: "",
+                MostrarTrace: "SI"
+            }
+        ]
     };
 }
 
@@ -969,5 +1081,7 @@ module.exports = {
     estadoUnicoRepetido,
     estadoMultipleDiferente,
     estadoIncluidoEnMuchos,
-    estadoExcluidoEnMuchos
+    estadoExcluidoEnMuchos,
+    envioPiezaSeMudo,
+    SeguimientoPiezaSeMudo
 };
