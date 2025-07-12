@@ -20,24 +20,19 @@ let counter = 0;
 // Ruta GET para seguimiento de una pieza
 app.get('/clientes/seguimientopieza', (req, res) => {
     try {
-        const { NumeroPiezaCliente } = req.query;
-        const token = req.headers.authorization?.replace('Bearer ', '');
-
-        const selector = token || NumeroPiezaCliente;
-
-        const mockResponse = mockGetPiezas(selector);
+        const { NumeroPiezaCliente, ProveedorCorreo } = req.query; // const defaultResponse = mockGetPiezas()
+        const token = req.headers.authorization.replace('Bearer ', '');
+        const mockResponse = mockGetPiezas(token);
 
         if (!mockResponse) {
-            return res.status(200).json({ mensaje: 'Mock por defecto' });
+            return res.status(200).json(defaultResponse);
         }
-
         return res.status(200).json(mockResponse);
     } catch (e) {
-        return res.status(500).json({ error: e.message });
+        return res.status(500).json(e.message);
     }
 });
 
-// Función de selección de mocks para seguimiento de pieza
 function mockGetPiezas(numeroPiezaCliente) {
     L.info('numeroPiezaCliente recibido:', numeroPiezaCliente);
     let response;
@@ -94,53 +89,53 @@ function mockGetPiezas(numeroPiezaCliente) {
     return response;
 }
 
-// Ruta GET para consulta de piezas (casos con varias o una tarjeta)
 app.get('/clientes/consultapiezas', (req, res) => {
-    try {
-        const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization.replace('Bearer ', '');
 
-        const errorResponses = {
-            '401': { status: 401, message: 'Access Token inválido' },
-            '403': { status: 403, message: 'Refresh Token expirado' },
-            '404': { status: 404, message: 'Error 404 al intentar obtener piezas' },
-            '500': { status: 500, message: 'Error 500 al intentar obtener piezas' },
-        };
-
-        if (errorResponses[token]) {
-            return res.status(errorResponses[token].status).json({ error: errorResponses[token].message });
-        }
-
-        const mockResponse = getMockEnvioPiezas(token);
-        return res.status(200).json(mockResponse);
-    } catch (e) {
-        return res.status(500).json({ error: e.message });
-    }
-});
-
-// Función de selección de mocks para consulta de piezas
-function getMockEnvioPiezas(token) {
-    console.info('Token recibido para consulta de piezas:', token);
-    const mockResponses = {
-        variasTarjetas: piezasMocks.variasTarjetas,
-        unaTarjeta: piezasMocks.unaTarjeta,
+    // Manejo de errores por código de token
+    const errorResponses = {
+        401: { status: 401, message: 'Access Token inválido' },
+        403: { status: 403, message: 'Refresh Token expirado' },
+        404: { status: 404, message: 'Error 404 al intentar obtener piezas' },
+        500: { status: 500, message: 'Error 500 al intentar obtener piezas' },
     };
 
+    if (errorResponses[token]) {
+        return res.status(errorResponses[token].status).json({ error: errorResponses[token].message });
+    }
+
+    // Obtener respuesta mock
+    const mockResponse = getMockEnvioPiezas(token);
+    return res.status(200).json(mockResponse);
+});
+
+function getMockEnvioPiezas(token) {
+    L.info('numeroPiezaCliente recibido:', token);
+
+    const mockResponses = {
+        variasTarjetas: piezasMocks.variasTarjetas,
+        unaTarjeta: piezasMocks.unaTarjetaElejida,
+        envioPiezaSeMudo: piezasMocks.envioPiezaSeMudo,
+    };
+
+    // Si no hay match, se devuelve `unaTarjeta` por defecto
     return (mockResponses[token] || piezasMocks.unaTarjeta)();
 }
 
-// Ruta auxiliar para simular un delay
 app.post('/test/delay', async (req, res) => {
-    const milisec = parseInt(req.query.milisec) || 1000;
-    console.log(`Simulando espera de ${milisec} ms...`);
-    await new Promise(resolve => setTimeout(resolve, milisec));
-    res.status(200).json({ status: 'OK', delay: milisec });
+    try {
+        const { milisec } = req.query;
+
+        L.info('Espera por ' + milisec);
+
+        await sleep(milisec);
+
+        res.status(200).json({ status: 'OK' });
+    } catch (e) {
+        return res.status(500).json(e.message);
+    }
 });
 
-// Arranque del servidor local
-const PORT = 8080;
-app.listen(PORT, () => {
-    console.log(`Servidor mock activo en http://localhost:${PORT}`);
-});
 
 //****************************************Mocks para servicios Aviso de viaje*****************
 
@@ -378,4 +373,10 @@ app.post('/test-api/403', (req, res) => {
 
 app.get('/test-api/403', (req, res) => {
     return res.status(403).end();
+});
+
+// Arranque del servidor local
+const PORT = 8080;
+app.listen(PORT, () => {
+    console.log(`Servidor mock activo en http://localhost:${PORT}`);
 });
