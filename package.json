@@ -19,6 +19,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
+    "lodash": "^4.17.21",
     "winston": "^3.17.0"
   }
 }
