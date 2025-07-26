@@ -383,23 +383,23 @@ app.listen(PORT, () => {
     console.log(`Servidor mock activo en http://localhost:${PORT}`);
 });
 //****************************************Experiencia************ Mocks para servicios ONB********************************
-// Alta cliente
-app.post('/clientes/:HashClient/altacliente', (req, res) => {
-    const hc = req.params.HashClient;
+// Alta cliente (refactor con header X-Mock-Scenario)
+app.post('/clientes/altacliente', (req, res) => {
+    const mockScenario = req.header('X-Mock-Scenario');
     const body = req.body;
 
     L.debug('body', body);
-    L.info(hc);
+    L.info(`Mock Scenario: ${mockScenario}`);
 
     if (!body) return res.status(400).json({ error: 'sin body' });
 
-    const error = altaClienteMocks.altaCliente[hc];
-    if (error) {
-        const [status, payload] = error;
+    if (mockScenario && altaClienteMocks.altaCliente[mockScenario]) {
+        const [status, payload] = altaClienteMocks.altaCliente[mockScenario];
         return res.status(status).json(payload);
     }
 
-    return res.json({ ente: '55555' });
+    // Si no hay mock, responder con éxito por defecto
+    return res.status(200).json({ ente: '55555' });
 });
 
 // Apertura cuenta individuo

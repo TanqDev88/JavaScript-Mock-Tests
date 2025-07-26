@@ -8,15 +8,15 @@
 module.exports = {
     altaCliente: {
         // Error de autenticación (token inválido o expirado)
-        '401': [401, { error_code: 'Error de autenticación', message: 'mensaje' }],
+        '401': [401, { error_code: 'SecurityException', message: 'La información de seguridad no es válida' }],
         
         //Cliente (caso duplicado)
-        '412': [412, { error_code: '101061', message: 'duplicado' }],
+        '412': [412, { error_code: '101061', message: '[sp_ente] NUMERO DE IDENTIFICACION TRIBUTARIA DUPLICADA' }],
         
         // Errores genéricos en la creación del cliente
-        '103001': [412, { error_code: '103001', message: 'error en la creación del cliente' }],
-        '103005': [412, { error_code: '103005', message: 'error en la creación del cliente' }],
-        '101001': [412, { error_code: '101001', message: 'error en la creación del cliente' }],
+        '103001': [412, { error_code: '103001', message: 'Tenemos inconvenientes en el servicio' }],
+        '103005': [412, { error_code: '103005', message: 'Tenemos inconvenientes en el servicio' }],
+        '101001': [412, { error_code: '101001', message: 'Tenemos inconvenientes en el servicio' }],
         
         // DNI inhabilitado.
         '107215': [412, { error_code: '107215', message: 'inhabilitación de DNI' }],
@@ -28,7 +28,7 @@ module.exports = {
         '701102': [412, { error_code: '701102', message: 'error en sucursal' }],
         
         // Error inesperado del servidor
-        '500': [500, { error_code: 'service exception', message: 'error inesperado' }],
+        '500': [500, { error_code: 'ServiceException', message: 'Error interno, por favor vuelva a intentar.' }],
     },
 
     cuentaIndividuo: {
