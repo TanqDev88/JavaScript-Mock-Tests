@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "90821745-beec-4d35-ae58-5898ccaa50c8",
+		"name": "ONB - Colección de Alta de Individuo y Apertura de Cuenta",
+		"description": "En esta colección se agrupan los endpoints relacionados al alta de clientes (`altaCliente`) y la apertura de cuentas individuales (`cuentaIndividuo`). Incluye casos de éxito y errores simulados para facilitar pruebas y validaciones.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10082696"
+	},
+	"item": [
+		{
+			"name": "[TODO] Alta de Cliente (mock - sin body)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "oficina 500",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "HashClient",
+						"value": "500",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-Mock-Scenario",
+						"value": "401",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/clientes/altacliente",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clientes",
+						"altacliente"
+					]
+				},
+				"description": "### Casos de respuesta simulada:\n\n| Código | Descripción |\n| --- | --- |\n| 401 | Error de autenticación (token inválido o expirado) |\n| 412 | Cliente duplicado (`error_code: 101061`) |\n| 412 | Error en la creación del cliente (`error_code: 103001 / 103005 / 101001`) |\n| 412 | DNI inhabilitado (`error_code: 107215`) |\n| 412 | Dirección de email repetida (`error_code: 107526`) |\n| 412 | Error en sucursal (`error_code: 701102`) |\n| 500 | Error inesperado del servidor (`error_code: service exception`) |\n\n🚧 **TODO:** Validar comportamiento ante body vacío vs input requerido en producción\n\n📝 Este mock permite omitir el body por simplicidad. Revisar si este comportamiento se alinea con el backend real antes de avanzar a stage/prod."
+			},
+			"response": []
+		},
+		{
+			"name": "Apertura de Cuenta Individual",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// ====================\r",
+							"// TEST: Apertura de Cuenta Individual\r",
+							"// ====================\r",
+							"\r",
+							"// ✅ Código de estado esperado\r",
+							"pm.test(\"Código de estado válido\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 412, 500]);\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// ✅ Éxito: verificar tipo de cuenta (USD o ARS/K)\r",
+							"if (pm.response.code === 200) {\r",
+							"    pm.test(\"Cuenta creada exitosamente con categoría válida\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"categoria\");\r",
+							"        pm.expect([\"USD\", \"K\"]).to.include(jsonData.categoria);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// ✅ Error: debe contener campo 'error' o 'message'\r",
+							"if (pm.response.code !== 200) {\r",
+							"    pm.test(\"Respuesta contiene detalle de error\", function () {\r",
+							"        pm.expect(jsonData).to.satisfy(obj => {\r",
+							"            return obj.error_code || obj.message || obj.error;\r",
+							"        });\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "oficina 500",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ente\": 5014848,\r\n  \"tipo_producto\": 1,\r\n  \"oficina\": 500,\r\n  \"direccion_envio_resumen\": 1,\r\n  \"direccion_envio_tarjeta\": 1,\r\n  \"direccion_email_resumen\": \"eli.va245231@gmail.com\",\r\n  \"moneda\": \"USD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/clientes/apertura/cuentaindividuo",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clientes",
+						"apertura",
+						"cuentaindividuo"
+					]
+				},
+				"description": "### Casos de respuesta simulada:\n\n| Oficina | Código | Mensaje |\n| --- | --- | --- |\n| `999` | 200 | Cuenta en dólares abierta exitosamente (`categoria: USD`) |\n| default | 200 | Cuenta en pesos abierta exitosamente (`categoria: K`) |\n| `258264` | 412 | Se superó la cantidad máxima de cuentas para el cliente |\n| `101042` | 412 | Ente no existente o cédula incorrecta |\n| `258235` | 412 | Oficial de cuenta no disponible para la sucursal o no vigente |\n| `258266` | 412 | 🏦 No se pudo abrir la cuenta por este canal. Debe acudir a una sucursal |\n| `401` | 401 | Información de seguridad inválida (SecurityException) |\n| `500` | 500 | Error interno del servidor. Por favor vuelva a intentar |"
+			},
+			"response": []
+		}
+	]
+}
