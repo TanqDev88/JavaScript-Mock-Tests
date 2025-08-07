@@ -430,6 +430,9 @@ app.post('/clientes/apertura/cuentaindividuo', (req, res) => {
     }
 
     if (utils.compareStrings(oficina, '999')) {
+        return res.status(200).json(altaClienteMocks.respuestasExito.cuentaARSyUSD);
+    }
+        if (utils.compareStrings(oficina, '123456')) {
         return res.status(200).json(altaClienteMocks.respuestasExito.cuentaUSD);
     }
 
