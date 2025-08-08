@@ -89,6 +89,30 @@ module.exports = {
             oficial: 232321,
             producto_bancario: 21,
         },
+                cuentaARSyUSD: {
+            data: {
+                estado: 'A',
+                Oficial: '4360',
+                cbu: '2850364440095821433748',
+                categoria: 'SA',
+                cuenta_banco: '436409582143374',
+                producto_bancario: '3'
+            },
+            success: true,
+            dataUSD: {
+                data: {
+                    estado: 'A',
+                    Oficial: '4360',
+                    cbu: '2850364420095821433874',
+                    categoria: 'CGD',
+                    cuenta_banco: '236409582143387',
+                    producto_bancario: '3'
+                },
+                success: true,
+                error: null
+            },
+            error: null
+        }
     }
 };
 
