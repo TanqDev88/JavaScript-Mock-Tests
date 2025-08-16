@@ -378,10 +378,15 @@ app.get('/test-api/403', (req, res) => {
 });
 
 // Arranque del servidor local
-const PORT = 8080;
-app.listen(PORT, () => {
-    console.log(`Servidor mock activo en http://localhost:${PORT}`);
-});
+// const PORT = 8080;
+// app.listen(PORT, () => {
+//     console.log(`Servidor mock activo en http://localhost:${PORT}`);
+// });
+
+//Implementacion en GCP - cloud functions
+const functions = require('@google-cloud/functions-framework');
+functions.http('mockService', app);
+
 //****************************************Experiencia************ Mocks para servicios ONB********************************
 // Alta cliente (refactor con header X-Mock-Scenario)
 app.post('/clientes/altacliente', (req, res) => {
