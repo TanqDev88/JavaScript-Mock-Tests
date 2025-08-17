@@ -3,20 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "PORT=8080 node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TanqDev88/JavaScript-Mock-Tests.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TanqDev88/JavaScript-Mock-Tests/issues"
-  },
-  "homepage": "https://github.com/TanqDev88/JavaScript-Mock-Tests#readme",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0",
     "lodash": "^4.17.21",
