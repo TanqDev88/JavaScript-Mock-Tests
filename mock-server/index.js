@@ -7,7 +7,7 @@ const piezasMocks = require('./mocks/piezas');
 const avisoMocks = require('./mocks/avisoViaje');
 const desvinculacionMocks = require('./mocks/desvinculacion');
 const altaClienteMocks = require('./mocks/onb');
-// const _ = require('lodash'); // <- si querés lodash, descomentá esta línea
+// const _ = require('lodash'); // Para usar lodash esta línea
 
 const winston = require('winston');
 const L = winston.createLogger({
@@ -88,7 +88,7 @@ function mockGetPiezas(numeroPiezaCliente) {
       response = piezasMocks.SeguimientoPiezaSeMudo();
       break;
     default:
-      response = piezasMocks.tarjetaEnSucursal(); // <- verificá que exista esta función
+      response = piezasMocks.tarjetaEnSucursal(); 
       break;
   }
   return response;
@@ -119,10 +119,11 @@ function getMockEnvioPiezas(token) {
   L.info('token recibido consulta piezas:', token);
   const mockResponses = {
     variasTarjetas: piezasMocks.variasTarjetas,
-    unaTarjeta: piezasMocks.unaTarjetaElejida, // <- revisá el nombre en tus mocks
+    unaTarjeta: piezasMocks.unaTarjetaElejida, 
     envioPiezaSeMudo: piezasMocks.envioPiezaSeMudo,
+    unaTarjetaElejida: piezasMocks.unaTarjetaElejida
   };
-  return (mockResponses[token] || piezasMocks.unaTarjeta)(); // <- revisá que exista unaTarjeta()
+  return (mockResponses[token] || piezasMocks.unaTarjeta)(); 
 }
 
 // ------------------------- Delay test -------------------------
