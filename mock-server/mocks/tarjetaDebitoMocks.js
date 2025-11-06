@@ -78,6 +78,49 @@ function DESBLOQUEO_TD_YA_DESBLOQUEADA() {
   };
 }
 
+function BLANQUEO_PIN_AADA_REAL() {
+  return {
+    tarjetas: [
+      {
+        marca: "VISA",
+        tipo: "DEBITO",
+        numero: "5208",
+        miembro: "T",
+        estado: "A",
+        motivo: "ADA",
+        hash: "HASH_AADA_5208",
+      },
+      {
+        marca: "VISA",
+        tipo: "DEBITO",
+        numero: "7007",
+        miembro: "T",
+        estado: "A",
+        motivo: "ADA",
+        hash: "HASH_AADA_7007",
+      },
+      {
+        marca: "VISA",
+        tipo: "DEBITO",
+        numero: "2295",
+        miembro: "T",
+        estado: "G",
+        motivo: "REP",
+        hash: "HASH_GREP_2295",
+      },
+      {
+        marca: "VISA",
+        tipo: "DEBITO",
+        numero: "1558",
+        miembro: "T",
+        estado: "G",
+        motivo: "REP",
+        hash: "HASH_GREP_1558",
+      },
+    ],
+  };
+}
+
 // 🔹 Manejador genérico (similar al resto de mocks)
 function obtenerMockPorToken(token) {
   switch (token) {
@@ -91,6 +134,8 @@ function obtenerMockPorToken(token) {
       return DESBLOQUEO_TD_WOTRO();
     case "DESBLOQUEO_TD_YA_DESBLOQUEADA":
       return DESBLOQUEO_TD_YA_DESBLOQUEADA();
+    case "BLANQUEO_PIN_AADA_REAL":
+      return BLANQUEO_PIN_AADA_REAL();
     default:
       return { error: "Token no reconocido" };
   }
