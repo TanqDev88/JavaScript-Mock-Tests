@@ -26,6 +26,52 @@ app.get("/ping", (req, res) => res.json({ message: "pong" }));
 // Helper: sleep
 const sleep = (ms) => new Promise((r) => setTimeout(r, Number(ms) || 0));
 
+// ------------------------- desbloqueo TD -------------------------
+
+app.post("/clientes/tarjetas/:hash_tarjeta/desbloqueo", (req, res) => {
+  try {
+    const { hash_tarjeta } = req.params;
+    const authHeader = req.headers.authorization || "";
+    const token = authHeader.replace("Bearer ", "").trim();
+
+    L.info(
+      `POST /clientes/tarjetas/${hash_tarjeta}/desbloqueo | Token recibido: ${token}`
+    );
+
+    switch (token) {
+      case "cobisBajo":
+        return res.status(412).json({
+          serviceError: {
+            code: "40003",
+            message:
+              "Producto bancario deshabilitado, consulte al Administrador del Sistema sp:cob_atm-sp_atm_tarjeta, trn: 16106, user: esbcobi, role: 239",
+            type: "F",
+          },
+        });
+
+      case "tokenExpirado":
+        return res.status(401).json({ code: 401 });
+
+      case "tokenBiometria":
+        return res.status(403).json({ code: 403 });
+
+      case "tarjetaNoW_SUS":
+        return res.status(409).json({ code: 409 });
+
+      case "errorInterno":
+        return res.status(500).json({ code: 500 });
+
+      default:
+        return res.status(204).json({ code: 204 });
+    }
+  } catch (error) {
+    L.error(
+      `Error en /clientes/tarjetas/:hash_tarjeta/desbloqueo: ${error.message}`
+    );
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 // ------------------------- consulta titularidad -------------------------
 app.get("/clientes/cuentas/:hash_cuenta/titularidad", (req, res) => {
   try {
