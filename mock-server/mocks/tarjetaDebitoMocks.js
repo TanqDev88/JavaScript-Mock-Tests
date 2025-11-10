@@ -1,3 +1,6 @@
+//****************************************Transacciones I************ Mocks TD's***********************
+// Estos mocks simulan distintas respuestas posibles de tarjetas de débito (VISA/MASTERCARD) según su estado y motivo, para probar escenarios de blanqueo de PIN y desbloqueo TD.
+// La función obtenerMockPorToken(token) devuelve el mock correspondiente según el token recibido.
 function BLANQUEO_PIN_ACTIVA() {
   return {
     tarjetas: [
