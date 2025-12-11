@@ -464,3 +464,43 @@ app.post("/clientes/apertura/cuentaindividuo", (req, res) => {
 
   return res.status(200).json(altaClienteMocks.respuestasExito.cuentaARS);
 });
+
+// ------------------------- CONSULTA SALDO -------------------------
+
+app.get("/clientes/cuentas/:hashCuenta/saldo", (req, res) => {
+  const hashCuenta = req.params.hashCuenta;
+  let response;
+
+  L.info("hashCuenta =>", hashCuenta);
+
+  if (hashCuenta === "SINSALDO") {
+    response = {};
+  } else if (hashCuenta === "restringido") {
+    response = {
+      status: 412,
+      data: {
+        error: "Cliente registrado",
+      },
+    };
+
+    return res.status(412).json(response);
+  } else {
+    response = {
+      numero_cuenta: "1773",
+      descripcion_cuenta: "CAJA DE AHORRO",
+      numero_cbu: "2850340830094019317731",
+      numero_cuit: "20243231915",
+      descripcion_moneda: "PESOS",
+      producto_banco: "CAJA DE AHORRO",
+      descripcion_categoria: "Macro Valora Exclusivo/Selecta",
+      alias: "maria-123",
+      saldo_disponible: "1000000",
+      titular: "MARIA JUAREZ",
+      codigo_firma: "I",
+      codigo_estado: "A",
+      saldo_para_girar: "-12390.52",
+    };
+  }
+
+  return res.status(200).json(response);
+});
