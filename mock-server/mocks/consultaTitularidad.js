@@ -119,6 +119,18 @@ function buildMockResponse(token, queryParams) {
         body: { error_code: "B76", message: "CBU inhabilitado o inválido" },
       };
       break;
+    case "412-prisma-empty-details":
+      data = {
+        success: false,
+        data: null,
+        error: {
+          code_http: 412,
+          details: "",
+          message: "Error prisma al consultar titularidad",
+          code_info: "ERROR_PRISMA",
+        },
+      };
+      break;
     default:
       data = {
         statusCode: 500,
